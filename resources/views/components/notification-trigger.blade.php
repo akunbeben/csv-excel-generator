@@ -1,5 +1,5 @@
 <x-filament::button
-    class="!w-full"
+    class="w-full"
     type="button"
     color="gray"
     icon="heroicon-m-rectangle-stack"

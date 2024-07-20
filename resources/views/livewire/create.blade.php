@@ -13,9 +13,11 @@
                 <div class="grid gap-4">
                     {{ $this->output }}
 
-                    {{ $this->submit }}
+                    <div class="flex items-center gap-2">
+                        {{ $this->submit }}
             
-                    @livewire('notification')
+                        @livewire('notification')
+                    </div>
                 </div>
             </x-filament::section>
         </div>

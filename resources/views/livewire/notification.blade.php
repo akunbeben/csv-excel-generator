@@ -7,10 +7,10 @@
     @if ($pollingInterval = $this->getPollingInterval())
         wire:poll.{{ $pollingInterval }}
     @endif
-    class="flex"
+    class="flex w-full"
 >
     @if ($trigger = $this->getTrigger())
-        <x-filament-notifications::database.trigger>
+        <x-filament-notifications::database.trigger class="w-full">
             {{ $trigger->with(['unreadNotificationsCount' => $unreadNotificationsCount]) }}
         </x-filament-notifications::database.trigger>
     @endif

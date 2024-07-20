@@ -36,7 +36,7 @@ class Create extends Component implements HasActions, HasForms
 
     public function mount(Request $request): void
     {
-        if (! $request->filled('key')) {
+        if (!$request->filled('key')) {
             redirect()->route('create', ['key' => $this->fingerprint()]);
 
             return;
@@ -129,6 +129,8 @@ class Create extends Component implements HasActions, HasForms
     public function submit(): Action
     {
         return Action::make('submit')
+            ->extraAttributes(['class' => 'w-full'])
+            ->tooltip('Will be processed in the background, check history for progress.')
             ->before(function () {
                 $this->main->validate();
                 $this->output->validate();

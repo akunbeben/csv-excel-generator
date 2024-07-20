@@ -1,66 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Data Generator Tool - Generate CSV/XLXS.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Main](screenshots/main.png)
+![History](screenshots/history.png)
+![Result](screenshots/image.png)
 
-## About Laravel
+This Laravel application allows you to generate synthetic data based on predefined columns and output settings. It is especially useful for testing and development purposes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Customizable Columns**: Define your own columns with specific data types.
+- **Locale Support**: Generate data based on specific locales.
+- **Flexible Output**: Export data in various formats such as CSV or Excel (XLXS).
+- **Bulk Data Generation**: Generate rows of data based on your input at a time.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Available Data Types - Generation based on locale
 
-## Learning Laravel
+- **Name (Person name)**
+- **Email**
+- **Password**
+- **PhoneNumber**
+- **Address**
+- **Sentences (Real random text)**
+- **Number (Random 2 digit number)**
+- **Date**
+- **CompanyName**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Available Locales
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- English (US)
+- Indonesian (ID)
+- German (DE)
+- French (FR)
+- Spanish (ES)
+- Italian (IT)
+- Portuguese (PT)
+- Russian (RU)
+- Japanese (JP)
+- Korean (KR)
+- Chinese (CN)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Getting Started
 
-## Laravel Sponsors
+### Prerequisites
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP >= 8.2
+- Composer
 
-### Premium Partners
+### Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/akunbeben/csv-excel-generator.git
+    cd csv-excel-generator
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    composer install
+    npm install
+    npm run dev
+    ```
+
+3. **Copy the example environment file and configure it**
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. **Configure your database settings in the `.env` file (Prefer to use SQLite)**
+
+5. **Run database migrations**
+
+    ```bash
+    php artisan migrate
+    ```
+
+6. **Serve the application**
+
+    ```bash
+    php artisan serve
+    ```
+
+    The application will be available at `http://localhost:8000`.
+
+## Usage
+
+### Defining Columns
+
+1. **Add Columns**: Click on "Add more columns" to define the data structure.
+2. **Set Labels and Data Types**:
+    - **Label**: Label of the column.
+    - **Data Type**: Predefined data type for generating data.
+
+### Configuring Output Settings
+
+1. **Locale**: Select the desired locale for locale-specific data generation.
+2. **Rows**: Specify the number of rows you wish to generate (e.g., 100).
+3. **Output**: Choose the desired output format (e.g., CSV or XLXS).
+4. **Delimiter (CSV Only)**: Set the delimiter for the CSV output (e.g., comma).
+
+### Generating Data
+
+Once all settings are configured, click on the "Generate" button to create your data. The generated data will be available for download in the specified format.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+We welcome contributions from the community! If you'd like to contribute, please follow these steps:
 
-## Code of Conduct
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Create a new Pull Request.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Please make sure your code adheres to the project's coding standards and includes appropriate test coverage.
 
-## Security Vulnerabilities
+## Support
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+For any questions or issues, please contact akunbeben@gmail.com or [Create an Issue ticket](https://github.com/akunbeben/csv-excel-generator/issues).
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
