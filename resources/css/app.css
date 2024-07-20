@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root.dark {
+        color-scheme: dark;
+    }
+
+    /* When scrolling to validation error, do not hide element behind the top bar */
+    [data-field-wrapper] {
+        scroll-margin-top: 8rem;
+    }
+}
+
+.fi-section,
+.fi-fo-repeater-item,
+.fi-btn,
+.fi-input-wrp,
+.fi-modal-window {
+    @apply rounded;
+}
+
+.fi-modal-close-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+}
