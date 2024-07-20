@@ -36,7 +36,7 @@ class Create extends Component implements HasActions, HasForms
 
     public function mount(Request $request): void
     {
-        if (!$request->filled('key')) {
+        if (! $request->filled('key')) {
             redirect()->route('create', ['key' => $this->fingerprint()]);
 
             return;

@@ -170,7 +170,7 @@ class ExportAction extends Actions\Action
                         fn (PendingBatch $batch) => $batch->name($jobBatchName),
                     )
                     ->allowFailures(),
-                ...(($hasXlsx && (!$hasCsv)) ? [$makeCreateXlsxFileJob()] : []),
+                ...(($hasXlsx && (! $hasCsv)) ? [$makeCreateXlsxFileJob()] : []),
                 app(ExportCompletion::class, [
                     'export' => $export,
                     'columnMap' => $columnMap,

@@ -70,7 +70,7 @@ class PrepareCsvExport implements ShouldQueue
                 $recordsCount = count($records);
             }
 
-            if (!$recordsCount) {
+            if (! $recordsCount) {
                 return;
             }
 
