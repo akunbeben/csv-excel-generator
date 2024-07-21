@@ -16,6 +16,7 @@ use Filament\Actions\Exports\ExportColumn;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -33,6 +34,8 @@ class Create extends Component implements HasActions, HasForms
     private ?Collection $columns = null;
 
     public ?array $records = [];
+
+    private int $maxRows = 5000;
 
     public function mount(Request $request): void
     {
@@ -74,8 +77,14 @@ class Create extends Component implements HasActions, HasForms
                 Forms\Components\TextInput::make('rows')
                     ->label('Rows')
                     ->hintIcon('heroicon-o-information-circle', 'How many rows do you want to generate?')
+                    ->helperText('The maximum number of rows is 5000 per generation.')
                     ->default(10)
                     ->minValue(1)
+                    ->maxValue($this->maxRows)
+                    ->live()
+                    ->validationMessages([
+                        'max_value' => 'The maximum number of rows is 5000.',
+                    ])
                     ->required(),
                 Forms\Components\Select::make('output')
                     ->live()
@@ -131,6 +140,7 @@ class Create extends Component implements HasActions, HasForms
         return Action::make('submit')
             ->extraAttributes(['class' => 'w-full'])
             ->tooltip('Will be processed in the background, check history for progress.')
+            ->disabled(fn () => $this->outputData['rows'] > $this->maxRows)
             ->before(function () {
                 $this->main->validate();
                 $this->output->validate();
@@ -140,6 +150,10 @@ class Create extends Component implements HasActions, HasForms
             ->label('Generate')
             ->livewireTarget('export')
             ->action(function () {
+                if ($this->outputData['rows'] > $this->maxRows) {
+                    return;
+                }
+
                 foreach (range(1, $this->outputData['rows'] ?? 10) as $index) {
                     foreach ($this->mainData['columns'] as $column) {
                         $record[$column['label']] = FakerFiller::from($column['type'])->fill($this->outputData['locale'] ?? 'en_US');

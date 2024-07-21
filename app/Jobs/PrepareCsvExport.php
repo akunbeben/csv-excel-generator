@@ -70,21 +70,17 @@ class PrepareCsvExport implements ShouldQueue
                 $recordsCount = count($records);
             }
 
-            if (! $recordsCount) {
+            if (!$recordsCount) {
                 return;
             }
 
-            $jobs = [];
-
-            foreach (array_chunk($records, length: $this->chunkSize) as $recordsChunk) {
-                $jobs[] = app($exportCsvJob, [
-                    'export' => $this->export,
-                    'records' => $recordsChunk,
-                    'columnMap' => $this->columnMap,
-                    'options' => $this->options,
-                    'delimiter' => $this->delimiter,
-                ]);
-            }
+            $jobs[] = app($exportCsvJob, [
+                'export' => $this->export,
+                'records' => $records,
+                'columnMap' => $this->columnMap,
+                'options' => $this->options,
+                'delimiter' => $this->delimiter,
+            ]);
 
             $this->batch()->add($jobs);
 

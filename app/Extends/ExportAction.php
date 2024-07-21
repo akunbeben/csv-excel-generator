@@ -74,15 +74,7 @@ class ExportAction extends Actions\Action
     {
         parent::setUp();
 
-        // $this->label(fn (ExportAction $action): string => __('filament-actions::export.label', ['label' => $action->getPluralModelLabel()]));
-
-        // $this->modalHeading(fn (ExportAction $action): string => __('filament-actions::export.modal.heading', ['label' => $action->getPluralModelLabel()]));
-
-        // $this->modalSubmitActionLabel(__('filament-actions::export.modal.actions.export.label'));
-
-        // $this->groupedIcon(FilamentIcon::resolve('actions::export-action.grouped') ?? 'heroicon-m-arrow-down-tray');
-
-        $this->action(function (ExportAction $action, array $data, \Livewire\Component $livewire) {
+        $this->action(function (ExportAction $action, array $data) {
             $exporter = $action->getExporter();
 
             $records = $action->getRecords();
@@ -138,8 +130,6 @@ class ExportAction extends Actions\Action
             $jobConnection = $exporter->getJobConnection();
             $jobBatchName = $exporter->getJobBatchName();
 
-            // We do not want to send the loaded user relationship to the queue in job payloads,
-            // in case it contains attributes that are not serializable, such as binary columns.
             $export->unsetRelation('user');
 
             $makeCreateXlsxFileJob = fn (): CreateXlsxFile => app(CreateXlsxFile::class, [
@@ -170,7 +160,7 @@ class ExportAction extends Actions\Action
                         fn (PendingBatch $batch) => $batch->name($jobBatchName),
                     )
                     ->allowFailures(),
-                ...(($hasXlsx && (! $hasCsv)) ? [$makeCreateXlsxFileJob()] : []),
+                ...(($hasXlsx && (!$hasCsv)) ? [$makeCreateXlsxFileJob()] : []),
                 app(ExportCompletion::class, [
                     'export' => $export,
                     'columnMap' => $columnMap,
