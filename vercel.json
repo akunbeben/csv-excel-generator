@@ -8,12 +8,16 @@
     },
     "routes": [
         {
+            "src": "/css/(.*)",
+            "dest": "/public/css/$1"
+        },
+        {
             "src": "/build/assets/(.*)",
             "dest": "/public/build/assets/$1"
         },
         {
-            "src": "/(css|js)/(.*)",
-            "dest": "/public/$1/$2"
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
         },
         {
             "src": "/(.*)",
