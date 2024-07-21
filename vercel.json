@@ -8,10 +8,6 @@
     },
     "routes": [
         {
-            "src": "/public/database.sqlite",
-            "dest": "/public/database.sqlite"
-        },
-        {
             "src": "/(css|js)/(.*)",
             "dest": "/public/build/$1/$2"
         },
@@ -26,7 +22,6 @@
         "APP_DEBUG": "true",
         "APP_URL": "https://seed.beben.space",
         "VERCEL_DEMO_MODE": "true",
-        "DB_DATABASE": "/public/database.sqlite",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
