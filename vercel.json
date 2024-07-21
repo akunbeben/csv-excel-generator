@@ -27,7 +27,7 @@
     "env": {
         "APP_NAME": "CSV/Excel Seeds",
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
         "APP_URL": "https://seed.beben.space",
         "VERCEL_DEMO_MODE": "true",
         "APP_CONFIG_CACHE": "/tmp/config.php",
