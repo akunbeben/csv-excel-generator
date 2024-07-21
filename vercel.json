@@ -4,14 +4,11 @@
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.1"
-        },
-        "public/**/*.{js,css}": {
-            "runtime": "@vercel/static"
         }
     },
     "routes": [
         {
-            "src": "/build/(css|js)/(.*)",
+            "src": "/build/assets/(.*)",
             "dest": "/public/build/$1/$2"
         },
         {
