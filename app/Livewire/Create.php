@@ -46,7 +46,7 @@ class Create extends Component implements HasActions, HasForms
             'key' => $request->query('key'),
         ]);
 
-        auth()->login($user);
+        auth()->login($user, true);
 
         $this->main->fill();
         $this->output->fill();
