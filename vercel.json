@@ -8,6 +8,10 @@
     },
     "routes": [
         {
+            "src": "/public/database.sqlite",
+            "dest": "/public/database.sqlite"
+        },
+        {
             "src": "/(css|js)/(.*)",
             "dest": "/public/build/$1/$2"
         },
