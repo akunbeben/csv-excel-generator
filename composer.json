@@ -52,7 +52,7 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "vercel": [
-            "@php artisan migrate --graceful --ansi"
+            "@php artisan migrate --force"
         ]
     },
     "extra": {
