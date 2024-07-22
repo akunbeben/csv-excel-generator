@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentColor;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pulse\Facades\Pulse;
@@ -36,6 +37,15 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return request('key') === config('pulse.key');
+        });
+
+        Pulse::user(function ($user) {
+            $user->load(['sessions' => fn ($query) => $query->latest()->limit(1)]);
+
+            return [
+                'name' => $user->key,
+                'extra' => "{$user->sessions->first()?->ip_address} | {$user->sessions->first()?->user_agent}",
+            ];
         });
     }
 }
