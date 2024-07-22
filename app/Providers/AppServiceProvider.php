@@ -8,6 +8,7 @@ use Filament\Support\Facades\FilamentColor;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pulse\Facades\Pulse;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,12 @@ class AppServiceProvider extends ServiceProvider
             'primary' => Color::Sky,
         ]);
 
-        Gate::define('viewPulse', fn () => request(null)->query('key') === config('app.key'));
-        Pulse::user(fn ($user) => ['key' => $user->key]);
+        Gate::define('viewPulse', function ($user) {
+            if (Livewire::isLivewireRequest()) {
+                return true;
+            }
+
+            return request('key') === config('pulse.key');
+        });
     }
 }
